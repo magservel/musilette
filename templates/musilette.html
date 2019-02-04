@@ -1,51 +1,9 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-		<script language="javascript">
-			var given_notes = [];
-			function update(note) {
-				var index = given_notes.indexOf(note);
-				if (index >= 0) {
-					given_notes.splice(index, 1);
-				} else {
-					given_notes.push(note);
-				}
-				 document.getElementById("inputs").innerHTML = given_notes;
-			}
-
-			function compute() {
-				$.ajax({
-				   type: "POST",
-				   url: "/compute_ranges",
-				   //contentType: 'application/json;',
-				   data: {'notes': given_notes},
-				   success: function(response){
-				   	var i;
-				   	document.getElementById("results").innerHTML = '';
-				   	for (i=0; i<response.result.length; i++) {
-				   		console.log(response.result[i]);
-				   		document.getElementById("results").innerHTML += response.result[i]['pourcentage'] + ' ';
-				   		document.getElementById("results").innerHTML += response.result[i]['keynote'];
-
-				   		document.getElementById("results").innerHTML += response.result[i]['range'] + ' ';
-				   		document.getElementById("results").innerHTML += response.result[i]['notes'] + '</br>';
-				   	} 
-				   }, 
-				   error: function(error){
-				   	console.log(error);
-				   }
-				});
-			}
-
-			function clean() {
-				given_notes = [];
-				document.getElementById("inputs").innerHTML = given_notes;
-				document.getElementById("results").innerHTML = '';
-			}
-
-			
-		</script>
+		<script language="javascript" src="static/js/index.js"></script>
 	</head>
 	<body>
 		<h1>La musilette</h1>
